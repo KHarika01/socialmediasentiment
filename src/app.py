@@ -27,7 +27,7 @@ def get_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-bg_image = get_base64(r"C:\Users\K HARIKA\OneDrive - Alliance University\Desktop\streamlit\Backend\background.jpg.jpeg")
+bg_image = get_base64("background.jpg")
 
 page_bg = f"""
 <style>
@@ -95,7 +95,7 @@ st.divider()
 def load_data():
 
     df = pd.read_csv(
-        r"C:\Users\K HARIKA\OneDrive - Alliance University\Desktop\streamlit\Backend\rural_tweets_dataset_10000.csv"
+        "rural_tweets_dataset_10000.csv"
     )
 
     if "tweet" in df.columns:
@@ -329,5 +329,6 @@ elif section == "Topic & Problem Analysis":
     )
 
     st.subheader(f"Top {num_topics} Rural Development Topics")
+
 
     st.dataframe(df_topics.head(num_topics), hide_index=True)
