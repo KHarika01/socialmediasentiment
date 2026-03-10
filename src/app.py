@@ -35,9 +35,9 @@ bg_image = get_base64("background.jpg.jpeg")
 page_bg = f"""
 <style>
 
-.block-container {{
-padding-top: 0rem;
-}}
+.block-container {
+padding-top: 3rem;
+}
 
 .stApp {{
 background: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)),
@@ -333,6 +333,7 @@ elif section == "Topic & Problem Analysis":
 
 
     st.dataframe(df_topics.head(num_topics), hide_index=True)
+
 
 
 
