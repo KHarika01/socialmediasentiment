@@ -22,12 +22,15 @@ st.set_page_config(
 # BACKGROUND IMAGE
 # -------------------------
 
+from pathlib import Path
+
 def get_base64(file):
-    with open(file, "rb") as f:
+    path = Path(__file__).parent.parent / file
+    with open(path, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-bg_image = get_base64("../background.jpg.jpeg")
+bg_image = get_base64("background.jpg.jpeg")
 
 page_bg = f"""
 <style>
@@ -93,10 +96,8 @@ st.divider()
 
 @st.cache_data
 def load_data():
-
-    df = pd.read_csv(
-        "../rural_tweets_dataset_10000.csv"
-    )
+    data_path = Path(__file__).parent.parent / "rural_tweets_dataset_10000.csv"
+    df = pd.read_csv(data_path)
 
     if "tweet" in df.columns:
         df["post"] = df["tweet"].astype(str).str.lower()
@@ -332,5 +333,6 @@ elif section == "Topic & Problem Analysis":
 
 
     st.dataframe(df_topics.head(num_topics), hide_index=True)
+
 
 
