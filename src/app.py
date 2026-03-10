@@ -27,7 +27,7 @@ def get_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-bg_image = get_base64("../background.jpg")
+bg_image = get_base64("../background.jpg.jpeg")
 
 page_bg = f"""
 <style>
@@ -332,4 +332,5 @@ elif section == "Topic & Problem Analysis":
 
 
     st.dataframe(df_topics.head(num_topics), hide_index=True)
+
 
