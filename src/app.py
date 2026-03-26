@@ -81,7 +81,7 @@ st.markdown(page_bg, unsafe_allow_html=True)
 
 st.markdown("""
 <h1 style='text-align:center; color:#1B4332; font-size:46px'>
-🌾 Social Media Analysis for Rural Development
+🌾 AI-Driven Social Media Sentiment Analysis for Rural Development Initiatives
 </h1>
 
 <p style='text-align:center; font-size:20px; color:#444'>
