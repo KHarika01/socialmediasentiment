@@ -295,6 +295,74 @@ elif section == "Topic & Problem Analysis":
 
     st.header("📌 Rural Development Topics")
 
+    topic_data = {
+
+"Internet":("Poor internet connectivity","Expand rural broadband"),
+"Drinking Water":("Unsafe drinking water","Village water purification systems"),
+"Agriculture":("Low crop productivity","Promote modern farming techniques"),
+"Fertilizer":("Fertilizer shortage","Improve fertilizer supply chain"),
+"Seeds":("Low quality seeds","Provide certified seeds"),
+"Transport":("Poor rural transport","Improve rural transport network"),
+"Markets":("Low crop prices","Improve farmer market access"),
+"Storage":("Lack of storage facilities","Build rural warehouses"),
+"Loans":("Limited farmer credit","Expand rural banking"),
+"Subsidy":("Delay in government subsidies","Direct benefit transfer systems"),
+"Drought":("Frequent drought","Rainwater harvesting"),
+"Flood":("Flood damage","Flood control infrastructure"),
+"Livestock":("Animal diseases","Improve veterinary services"),
+"Soil":("Soil fertility decline","Promote organic farming"),
+"Education":("Teacher shortage","Rural teacher recruitment"),
+"Healthcare":("Lack of rural hospitals","Build rural healthcare centers"),
+"Electricity":("Power cuts in villages","Improve rural power infrastructure"),
+"Roads":("Poor road connectivity","Increase rural road projects"),
+"Irrigation":("Water shortage for crops","Install solar irrigation pumps"),
+"Crop Insurance":("Slow claim approval","Digital claim processing"),
+"Cold Storage":("Food spoilage","Build cold storage units"),
+"Farmer Income":("Low farm income","Introduce minimum support prices"),
+"Organic Farming":("Lack of awareness","Provide farmer training"),
+"Agri Technology":("Low technology adoption","Introduce smart farming tools"),
+"Weather Forecasting":("Unpredictable weather","Provide weather alerts"),
+"Farmer Training":("Limited knowledge","Organize agriculture workshops"),
+"Rural Banking":("Limited bank access","Open rural banking branches"),
+"Digital Payments":("Low digital literacy","Provide digital training"),
+"Mobile Connectivity":("Weak mobile signal","Install rural towers"),
+"Village Roads":("Poor road conditions","Build all-weather roads"),
+"Solar Energy":("Lack of electricity","Install solar panels"),
+"Women Farmers":("Limited support","Provide women farmer schemes"),
+"Self Help Groups":("Lack of funding","Provide microfinance support"),
+"Fisheries":("Low fish production","Improve fish farming techniques"),
+"Poultry Farming":("Disease outbreaks","Improve poultry healthcare"),
+"Milk Production":("Low dairy productivity","Improve dairy infrastructure"),
+"Food Processing":("Low value addition","Build food processing units"),
+"Village Markets":("Limited market access","Develop rural markets"),
+"Farmer Cooperatives":("Poor coordination","Promote farmer cooperatives"),
+"Smart Farming":("Low automation","Introduce IoT farming systems"),
+"Precision Agriculture":("Inefficient farming","Use data-driven agriculture"),
+"Rural Tourism":("Low tourism infrastructure","Develop rural tourism programs"),
+"Village Startups":("Limited entrepreneurship","Support rural startups"),
+"Micro Finance":("Limited small loans","Provide microcredit"),
+"Skill Development":("Low employment skills","Provide rural skill training"),
+"Crop Diversification":("Dependence on single crop","Encourage diverse crops"),
+"Drip Irrigation":("Water wastage","Promote drip irrigation"),
+"Rainwater Harvesting":("Water scarcity","Build rainwater harvesting systems"),
+"Farm Machinery":("Limited machinery access","Subsidize farm equipment"),
+"Tractor Access":("High tractor cost","Provide tractor rental schemes")
+}
+
+    topics=list(topic_data.keys())
+
+    df_topics=pd.DataFrame({
+        "Topic":topics,
+        "Problem Identified":[topic_data[t][0] for t in topics],
+        "Possible Solution":[topic_data[t][1] for t in topics]
+    })
+
+    # expand topics to 100 rows
+    while len(df_topics) < 100:
+        df_topics = pd.concat([df_topics, df_topics], ignore_index=True)
+
+    df_topics = df_topics.head(100)
+
     num_topics = st.number_input(
         "Select number of rural topics",
         min_value=1,
@@ -302,39 +370,9 @@ elif section == "Topic & Problem Analysis":
         value=10
     )
 
-    data = [
-["Crop Insurance","Slow claim approval","Digital claim processing"],
-["Irrigation","Water shortage","Solar irrigation pumps"],
-["Electricity","Power cuts in villages","Improve rural power infrastructure"],
-["Infrastructure","Poor road connectivity","Increase rural road projects"],
-["Education","Teacher shortage","Rural teacher recruitment"],
-["Healthcare","Lack of rural hospitals","Build rural healthcare centers"],
-["Internet","Poor internet connectivity","Expand rural broadband"],
-["Drinking Water","Unsafe drinking water","Village water purification systems"],
-["Agriculture","Low crop productivity","Promote modern farming techniques"],
-["Fertilizer","Fertilizer shortage","Improve fertilizer supply chain"],
-["Seeds","Low quality seeds","Provide certified seeds"],
-["Transport","Poor transport facilities","Improve rural transport network"],
-["Markets","Low crop prices","Improve farmer market access"],
-["Storage","Lack of storage facilities","Build rural warehouses"],
-["Loans","Limited farmer credit","Expand rural banking"],
-["Subsidy","Delay in government subsidies","Direct benefit transfer systems"],
-["Drought","Frequent drought","Rainwater harvesting"],
-["Flood","Flood damage","Flood control infrastructure"],
-["Livestock","Animal diseases","Improve veterinary services"],
-["Soil","Soil fertility decline","Promote organic farming"]
-]
-
-    df_topics = pd.DataFrame(
-        data,
-        columns=["Topic","Problem Identified","Possible Solution"]
-    )
-
     st.subheader(f"Top {num_topics} Rural Development Topics")
 
-
     st.dataframe(df_topics.head(num_topics), hide_index=True)
-
 
 
 
